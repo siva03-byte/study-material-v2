@@ -54,6 +54,9 @@ CREATE TABLE topics (
 -- ======================================
 -- NOTES TABLE
 -- ======================================
+-- ======================================
+-- NOTES TABLE
+-- ======================================
 
 CREATE TABLE notes (
     id INT AUTO_INCREMENT PRIMARY KEY,
