@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Search Study Materials</h2>
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <!-- Search -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search notes, collections, and more...">
+        <button>Search</button>
+    </div>
+
+    <p class="try">Try: "mathematics", "computer science", "study notes"</p>
+
+    <h1>
+        Share Knowledge,<br>
+        <span>Learn Together</span>
+    </h1>
+
+    <p class="desc">
+        Join thousands of students and educators sharing notes, documents,
+        and study materials. Build your digital library and discover
+        valuable resources from around the world.
+    </p>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <button class="btn-start">Get Started</button>
+        <button class="btn-login">Sign In</button>
+    </div>
+
+    <!-- Book Icon -->
+    <div class="book">
+        📖
+    </div>
+
+
+</section>
+
+
+<div class="stats">
+
+<div class="card">
+<h3>{{notes}}</h3>
+<p>Total Notes</p>
+</div>
+
+<div class="card">
+<h3>{{users}}</h3>
+<p>Total Users</p>
+</div>
+
+<div class="card">
+<h3>{{downloads}}</h3>
+<p>Total Downloads</p>
+</div>
+
+</div>
+
+<h2>Top Categories</h2>
+
+<a href="/category" class="btn">View Departments</a>
+
+{% endblock %}

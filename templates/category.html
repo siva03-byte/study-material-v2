@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Departments</h2>
+
+<ul>
+
+{% for d in departments %}
+
+<li>
+<a href="/subject/{{d.id}}">
+{{d.department_name}}
+</a>
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% endblock %}
