@@ -2,8 +2,6 @@
 
 {% block content %}
 
-<h2>Search Study Materials</h2>
-
 <!-- Hero Section -->
 <section class="hero">
 
@@ -41,27 +39,96 @@
 </section>
 
 
-<div class="stats">
+<div class="total">
 
-<div class="card">
+<div class="user">
 <h3>{{notes}}</h3>
 <p>Total Notes</p>
 </div>
 
-<div class="card">
+<div class="user">
 <h3>{{users}}</h3>
 <p>Total Users</p>
 </div>
 
-<div class="card">
+<div class="user">
 <h3>{{downloads}}</h3>
 <p>Total Downloads</p>
 </div>
 
 </div>
+<section>
 
-<h2>Top Categories</h2>
+<h2>Subject Categories</h2>
 
-<a href="/category" class="btn">View Departments</a>
 
+<div class="container">
+
+<div class="card">
+<h2>Discrete Mathematics</h2>
+<ul>
+<li>Mathematical Induction</li>
+<li>Counting Principles</li>
+<li>Graph Theory</li>
+<li>Propositional Logic</li>
+</ul>
+<a href="discrete.html"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Digital Electronics</h2>
+<ul>
+<li>Binary Number System</li>
+<li>Boolean Algebra</li>
+<li>Logic Gates</li>
+<li>Karnaugh Map</li>
+</ul>
+<a href="digital.html"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Object Oriented Programming</h2>
+<ul>
+<li>OOP Concepts</li>
+<li>Java Basics</li>
+<li>Inheritance</li>
+<li>Exception Handling</li>
+</ul>
+<a href="oop.html"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Data Structures</h2>
+<ul>
+<li>Arrays</li>
+<li>Linked List</li>
+<li>Stack</li>
+<li>Queue</li>
+</ul>
+<a href="ds.html"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Operating System</h2>
+<ul>
+<li>Process Management</li>
+<li>CPU Scheduling</li>
+<li>Deadlock</li>
+<li>Memory Management</li>
+</ul>
+<a href="os.html"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Theory of Computation</h2>
+<ul>
+<li>Finite Automata</li>
+<li>Regular Expressions</li>
+<li>NFA to DFA</li>
+<li>Context Free Grammar</li>
+</ul>
+<a href="toc.html"><button>View All</button></a>
+</div>
+
+</section>
 {% endblock %}
