@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ note_type|title }} Notes for {{ topic }}</h1>
+<h2>Subject: {{ subject|title }}</h2>
+
+{% if notes %}
+<ul>
+{% for note in notes %}
+<li>{{ note.title }} - <a href="{{ note.file_path or note.video_link }}">Download/View</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No notes uploaded for this topic yet.</p>
+{% endif %}
+
+<div class="back">
+<a href="/{{ subject }}">Back to {{ subject|title }}</a>
+</div>
+
+{% endblock %}

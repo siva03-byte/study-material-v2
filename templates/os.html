@@ -4,20 +4,120 @@
 
 <ul class="topics">
 
-<li><a href="#">Introduction to Operating Systems</a></li>
-<li><a href="#">Process Management</a></li>
-<li><a href="#">CPU Scheduling Algorithms</a></li>
-<li><a href="#">Deadlock Concepts</a></li>
-<li><a href="#">Memory Management</a></li>
-<li><a href="#">Virtual Memory</a></li>
-<li><a href="#">File Systems</a></li>
-<li><a href="#">Disk Scheduling</a></li>
-<li><a href="#">Input Output Systems</a></li>
-<li><a href="#">System Security</a></li>
+<li>
+  <details class="topic">
+    <summary>Introduction to Operating Systems</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Introduction to Operating Systems">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Introduction to Operating Systems">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Introduction to Operating Systems">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Process Management</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Process Management">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Process Management">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Process Management">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>CPU Scheduling Algorithms</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=CPU Scheduling Algorithms">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=CPU Scheduling Algorithms">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=CPU Scheduling Algorithms">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Deadlock Concepts</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Deadlock Concepts">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Deadlock Concepts">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Deadlock Concepts">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Memory Management</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Memory Management">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Memory Management">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Memory Management">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Virtual Memory</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Virtual Memory">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Virtual Memory">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Virtual Memory">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>File Systems</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=File Systems">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=File Systems">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=File Systems">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Disk Scheduling</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Disk Scheduling">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Disk Scheduling">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Disk Scheduling">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Input Output Systems</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=Input Output Systems">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=Input Output Systems">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=Input Output Systems">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>System Security</summary>
+    <div class="topic-options">
+      <a href="/notes/os/online_notes?topic=System Security">Online Notes</a>
+      <a href="/notes/os/written_notes?topic=System Security">Written Notes</a>
+      <a href="/notes/os/video_notes?topic=System Security">Online Video</a>
+    </div>
+  </details>
+</li>
 
 </ul>
 
+{% if role == "admin" %}
+<div class="upload-section">
+    <h3>Upload Files for Operating Systems</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+{% endif %}
+
 <div class="back">
-<a href="index.html">Back to Subjects</a>
+<a href="index.html">Back to Subject</a>
 </div>
 {% endblock %}

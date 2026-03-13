@@ -14,7 +14,7 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('student','teacher') NOT NULL,
+    role ENUM('student','teacher','admin') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -125,7 +125,6 @@ INSERT INTO topics (topic_name, subject_id) VALUES
 -- Users
 INSERT INTO users (name,email,password,role) VALUES
 ('Admin Teacher','teacher1@mail.com','123456','teacher'),
-('John Student','student1@mail.com','123456','student');
 
 -- Notes
 INSERT INTO notes (title,file_path,note_type,subject_id,topic_id,uploaded_by) VALUES

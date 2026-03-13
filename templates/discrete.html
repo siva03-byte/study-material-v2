@@ -5,20 +5,120 @@
 
 <ul class="topics">
 
-<li><a href="#">Mathematical Induction and Proof Techniques</a></li>
-<li><a href="#">Counting Principles and Combinatorics</a></li>
-<li><a href="#">Pigeonhole Principle Applications</a></li>
-<li><a href="#">Permutations and Combinations</a></li>
-<li><a href="#">Recurrence Relations</a></li>
-<li><a href="#">Graph Theory and Graph Representation</a></li>
-<li><a href="#">Propositional Logic</a></li>
-<li><a href="#">Predicates and Quantifiers</a></li>
-<li><a href="#">Algebraic Structures</a></li>
-<li><a href="#">Lattices and Boolean Algebra</a></li>
+<li>
+  <details class="topic">
+    <summary>Mathematical Induction and Proof Techniques</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Mathematical Induction and Proof Techniques">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Mathematical Induction and Proof Techniques">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Mathematical Induction and Proof Techniques">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Counting Principles and Combinatorics</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Counting Principles and Combinatorics">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Counting Principles and Combinatorics">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Counting Principles and Combinatorics">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Pigeonhole Principle Applications</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Pigeonhole Principle Applications">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Pigeonhole Principle Applications">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Pigeonhole Principle Applications">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Permutations and Combinations</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Permutations and Combinations">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Permutations and Combinations">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Permutations and Combinations">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Recurrence Relations</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Recurrence Relations">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Recurrence Relations">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Recurrence Relations">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Graph Theory and Graph Representation</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Graph Theory and Graph Representation">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Graph Theory and Graph Representation">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Graph Theory and Graph Representation">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Propositional Logic</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Propositional Logic">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Propositional Logic">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Propositional Logic">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Predicates and Quantifiers</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Predicates and Quantifiers">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Predicates and Quantifiers">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Predicates and Quantifiers">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Algebraic Structures</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Algebraic Structures">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Algebraic Structures">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Algebraic Structures">Online Video</a>
+    </div>
+  </details>
+</li>
+<li>
+  <details class="topic">
+    <summary>Lattices and Boolean Algebra</summary>
+    <div class="topic-options">
+      <a href="/notes/discrete/online_notes?topic=Lattices and Boolean Algebra">Online Notes</a>
+      <a href="/notes/discrete/written_notes?topic=Lattices and Boolean Algebra">Written Notes</a>
+      <a href="/notes/discrete/video_notes?topic=Lattices and Boolean Algebra">Online Video</a>
+    </div>
+  </details>
+</li>
 
 </ul>
 
+{% if role == "admin" %}
+<div class="upload-section">
+    <h3>Upload Files for Discrete Mathematics</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+{% endif %}
+
 <div class="back">
-<a href="index.html">Back to Subjects</a>
+<a href="index.html">Back to Subject</a>
 </div>
 {% endblock %}

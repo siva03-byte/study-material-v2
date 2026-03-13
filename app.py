@@ -13,6 +13,11 @@ db = pymysql.connect(
     cursorclass=pymysql.cursors.DictCursor
 )
 
+# Insert admin user if not exists
+cursor = db.cursor()
+cursor.execute("INSERT IGNORE INTO users(name,email,password,role) VALUES('Admin','admin@gmail.com','admin@123','admin')")
+db.commit()
+
 # HOME PAGE
 @app.route("/")
 def index():
@@ -75,37 +80,46 @@ def subject(dept_id):
 # DISCRETE MATHEMATICS PAGE
 @app.route("/discrete")
 def discrete():
-    return render_template("discrete.html")
+    return render_template("discrete.html", role=session.get("role"))
 
 
 # DIGITAL ELECTRONICS PAGE
 @app.route("/digital")
 def digital():
-    return render_template("digital.html")
+    return render_template("digital.html", role=session.get("role"))
 
 
 # DATA STRUCTURES PAGE
 @app.route("/ds")
 def ds():
-    return render_template("ds.html")
+    return render_template("ds.html", role=session.get("role"))
 
 
 # OPERATING SYSTEMS PAGE
 @app.route("/os")
 def os_page():
-    return render_template("os.html")
+    return render_template("os.html", role=session.get("role"))
 
 
 # TABLE OF CONTENTS PAGE
 @app.route("/toc")
 def toc():
-    return render_template("toc.html")
+    return render_template("toc.html", role=session.get("role"))
 
 
 # OOPS PAGE
 @app.route("/oops")
 def oops():
-    return render_template("oops.html")
+    return render_template("oops.html", role=session.get("role"))
+
+
+# NOTES PAGE
+@app.route("/notes/<subject>/<note_type>")
+def notes(subject, note_type):
+    topic = request.args.get("topic", "")
+    
+    # For now, since no notes in DB, always show no notes
+    return render_template("notes.html", subject=subject, note_type=note_type, topic=topic, notes=[])
 
 
 # SEARCH PAGE
@@ -177,7 +191,7 @@ def register():
 
         cursor.execute(
             "INSERT INTO users(name,email,password,role) VALUES(%s,%s,%s,%s)",
-            (username,email,password,"user")
+            (username,email,password,"student")
         )
 
         db.commit()
