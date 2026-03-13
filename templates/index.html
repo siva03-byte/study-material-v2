@@ -7,8 +7,10 @@
 
     <!-- Search -->
     <div class="search-bar">
-        <input type="text" placeholder="Search notes, collections, and more...">
-        <button>Search</button>
+        <form action="/search" method="POST">
+            <input type="text" name="query" placeholder="Search notes, collections, and more...">
+            <button type="submit">Search</button>
+        </form>
     </div>
 
     <p class="try">Try: "mathematics", "computer science", "study notes"</p>
@@ -72,7 +74,7 @@
 <li>Graph Theory</li>
 <li>Propositional Logic</li>
 </ul>
-<a href="discrete.html"><button>View All</button></a>
+<a href="/discrete"><button>View All</button></a>
 </div>
 
 <div class="card">
@@ -83,7 +85,7 @@
 <li>Logic Gates</li>
 <li>Karnaugh Map</li>
 </ul>
-<a href="digital.html"><button>View All</button></a>
+<a href="/digital"><button>View All</button></a>
 </div>
 
 <div class="card">
@@ -94,7 +96,7 @@
 <li>Inheritance</li>
 <li>Exception Handling</li>
 </ul>
-<a href="oop.html"><button>View All</button></a>
+<a href="/oops"><button>View All</button></a>
 </div>
 
 <div class="card">
@@ -105,7 +107,7 @@
 <li>Stack</li>
 <li>Queue</li>
 </ul>
-<a href="ds.html"><button>View All</button></a>
+<a href="/ds"><button>View All</button></a>
 </div>
 
 <div class="card">
@@ -116,7 +118,7 @@
 <li>Deadlock</li>
 <li>Memory Management</li>
 </ul>
-<a href="os.html"><button>View All</button></a>
+<a href="/os"><button>View All</button></a>
 </div>
 
 <div class="card">
@@ -127,7 +129,7 @@
 <li>NFA to DFA</li>
 <li>Context Free Grammar</li>
 </ul>
-<a href="toc.html"><button>View All</button></a>
+<a href="/toc"><button>View All</button></a>
 </div>
 
 </section>

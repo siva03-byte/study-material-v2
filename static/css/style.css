@@ -242,11 +242,23 @@ animation-duration:17s;
 @keyframes float{
 
 0%{
-transform:translateY(0);
+transform:translateY(0) rotate(0deg);
+}
+
+25%{
+transform:translateY(-25vh) rotate(90deg);
+}
+
+50%{
+transform:translateY(-50vh) rotate(180deg);
+}
+
+75%{
+transform:translateY(-75vh) rotate(270deg);
 }
 
 100%{
-transform:translateY(-110vh);
+transform:translateY(-110vh) rotate(360deg);
 }
 }
 /* CATEGORY GRID */

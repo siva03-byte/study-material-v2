@@ -72,6 +72,67 @@ def subject(dept_id):
     )
 
 
+# DISCRETE MATHEMATICS PAGE
+@app.route("/discrete")
+def discrete():
+    return render_template("discrete.html")
+
+
+# DIGITAL ELECTRONICS PAGE
+@app.route("/digital")
+def digital():
+    return render_template("digital.html")
+
+
+# DATA STRUCTURES PAGE
+@app.route("/ds")
+def ds():
+    return render_template("ds.html")
+
+
+# OPERATING SYSTEMS PAGE
+@app.route("/os")
+def os_page():
+    return render_template("os.html")
+
+
+# TABLE OF CONTENTS PAGE
+@app.route("/toc")
+def toc():
+    return render_template("toc.html")
+
+
+# OOPS PAGE
+@app.route("/oops")
+def oops():
+    return render_template("oops.html")
+
+
+# SEARCH PAGE
+@app.route("/search", methods=["POST"])
+def search():
+    query = request.form.get("query", "").strip().lower()
+    if not query:
+        return redirect("/")
+
+    # Simple keyword-based redirects
+    if "discrete" in query or "mathematics" in query:
+        return redirect("/discrete")
+    elif "digital" in query or "electronics" in query:
+        return redirect("/digital")
+    elif "oops" in query or "object oriented" in query or "java" in query:
+        return redirect("/oops")
+    elif "data structures" in query or "ds" in query:
+        return redirect("/ds")
+    elif "operating system" in query or "os" in query:
+        return redirect("/os")
+    elif "theory of computation" in query or "toc" in query or "automata" in query:
+        return redirect("/toc")
+    else:
+        # If no match, show no results page
+        return render_template("search.html", results=[], query=query)
+
+
 # LOGIN
 @app.route("/login", methods=["GET","POST"])
 def login():
