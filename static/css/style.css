@@ -6,7 +6,7 @@ font-family: Arial, sans-serif;
 }
 
 body{
-background:#f4f6f9;
+background: white;
 }
 
 /* HEADER */
@@ -26,7 +26,7 @@ font-weight:bold;
 }
 
 nav a{
-color:white;
+color:rgb(133, 83, 83);
 text-decoration:none;
 margin-left:20px;
 font-size:16px;
@@ -94,13 +94,18 @@ h1 span{
 color:#38ef7d;
 }
 
+.title {
+    color: black;
+    text-align: center;
+}
+
 /* Description */
 
 .desc{
 width:600px;
 margin:auto;
 margin-top:20px;
-color:#9ca3af;
+color:#101010;
 line-height:1.6;
 }
 
@@ -189,8 +194,8 @@ color:#9ca3af;
 .bubbles span{
 position:absolute;
 border-radius:50%;
-background:rgba(255,255,255,0.1);
-animation:float 15s infinite linear;
+background: rgba(135,206,235,0.3);
+animation: float 15s infinite linear;
 }
 
 /* different sizes */
@@ -269,20 +274,22 @@ transform:translateY(-110vh) rotate(360deg);
 
 .container{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
 gap:25px;
 padding:40px;
+max-width: 1200px;
+margin: 0 auto;
 }
 
 .card{
-background:#1e293b;
+background: #95bbda;
 padding:20px;
 border-radius:10px;
 }
 
 .card h2{
-color:#3b82f6;
-background: #2c3e50;
+color: white;
+background: #d3cdcc;
 padding: 10px;
 text-align: center;
 border-radius: 5px 5px 0 0;
@@ -328,7 +335,7 @@ padding:0;
 }
 
 .topics li{
-background:#1e293b;
+background: white;
 padding:15px;
 margin:10px 0;
 border-radius:8px;
@@ -377,7 +384,7 @@ text-decoration:none;
 
 /* Background for the whole page */
 body {
-    background: #0f172a;
+    background: #d3f0ea;
     color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -397,7 +404,7 @@ body {
 
 /* The actual Box/Card */
 .auth-box {
-    background: #1163d7; /* Slightly lighter navy for the card */
+    background: #0b323f; /* Light blue background for the card */
     width: 100%;
     max-width: 420px;
     padding: 40px;
@@ -410,12 +417,12 @@ body {
 .auth-header h2 {
     font-size: 24px;
     margin-bottom: 8px;
-    color: #f0f6fc;
+    color: #1d1e1f;
 }
 
 .auth-header p {
     font-size: 14px;
-    color: #8b949e;
+    color: #1f1f20;
     margin-bottom: 30px;
 }
 
@@ -470,7 +477,7 @@ input:focus, select:focus {
 .auth-footer {
     margin-top: 25px;
     font-size: 14px;
-    color: #8b949e;
+    color: #2f3133;
 }
 
 .auth-footer a {
@@ -615,5 +622,5 @@ padding:15px;
 }
 
 .content a:hover {
-    color: #38ef7d;
+    color: #f97238;
 }
