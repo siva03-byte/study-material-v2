@@ -165,16 +165,19 @@ def register():
 
     if request.method == "POST":
 
-        name = request.form["name"]
+        username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
-        role = request.form["role"]
+        password_confirm = request.form["password_confirm"]
+
+        if password != password_confirm:
+            return "Passwords do not match", 400
 
         cursor = db.cursor()
 
         cursor.execute(
             "INSERT INTO users(name,email,password,role) VALUES(%s,%s,%s,%s)",
-            (name,email,password,role)
+            (username,email,password,"user")
         )
 
         db.commit()

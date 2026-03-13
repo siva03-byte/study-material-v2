@@ -2,20 +2,76 @@
 
 {% block content %}
 
-<h2>subjects</h2>
+<h2 style="text-align: center; color: #333;">All Subjects</h2>
 
+<div class="container">
+
+<div class="card">
+<h2>Discrete Mathematics</h2>
 <ul>
-
-{% for d in departments %}
-
-<li>
-<a href="/subject/{{d.id}}">
-{{d.department_name}}
-</a>
-</li>
-
-{% endfor %}
-
+<li>Mathematical Induction</li>
+<li>Counting Principles</li>
+<li>Graph Theory</li>
+<li>Propositional Logic</li>
 </ul>
+<a href="/discrete"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Digital Electronics</h2>
+<ul>
+<li>Binary Number System</li>
+<li>Boolean Algebra</li>
+<li>Logic Gates</li>
+<li>Karnaugh Map</li>
+</ul>
+<a href="/digital"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Object Oriented Programming</h2>
+<ul>
+<li>OOP Concepts</li>
+<li>Java Basics</li>
+<li>Inheritance</li>
+<li>Exception Handling</li>
+</ul>
+<a href="/oops"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Data Structures</h2>
+<ul>
+<li>Arrays</li>
+<li>Linked List</li>
+<li>Stack</li>
+<li>Queue</li>
+</ul>
+<a href="/ds"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Operating System</h2>
+<ul>
+<li>Process Management</li>
+<li>CPU Scheduling</li>
+<li>Deadlock</li>
+<li>Memory Management</li>
+</ul>
+<a href="/os"><button>View All</button></a>
+</div>
+
+<div class="card">
+<h2>Theory of Computation</h2>
+<ul>
+<li>Finite Automata</li>
+<li>Regular Expressions</li>
+<li>NFA to DFA</li>
+<li>Context Free Grammar</li>
+</ul>
+<a href="/toc"><button>View All</button></a>
+</div>
+
+</div>
 
 {% endblock %}
