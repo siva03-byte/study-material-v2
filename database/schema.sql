@@ -122,12 +122,12 @@ INSERT INTO topics (topic_name, subject_id) VALUES
 ('Normalization',3),
 ('OSI Model',4);
 
--- Users
-INSERT INTO users (name,email,password) VALUES
-('Admin Teacher','teacher1@mail.com','123456'),
-
+INSERT INTO users (name,email,password,role) VALUES
+('Admin Teacher','teacher1@mail.com','123456','teacher'),
+('System Admin','admin@mail.com','admin123','admin'),
+('Student User','student@mail.com','123456','student');
 -- Notes
-INSERT INTO notes (title,file_path,note_type,subject_id,topic_id,uploaded_by) VALUES
-('Linked List Notes','uploads/linkedlist.pdf','written',1,1,1),
-('Stack Tutorial Video','https://youtube.com/video','video',1,2,1),
-('SQL Introduction','uploads/sql_notes.pdf','online',3,4,1);
+INSERT INTO notes (title,file_path,video_link,note_type,subject_id,topic_id,uploaded_by) VALUES
+('Linked List Notes','uploads/linkedlist.pdf',NULL,'written',1,1,1),
+('Stack Tutorial Video',NULL,'https://youtube.com/video','video',1,2,1),
+('SQL Introduction','uploads/sql_notes.pdf',NULL,'online',3,4,1);

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 import pymysql
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret123"
@@ -83,11 +84,13 @@ def discrete():
     return render_template("discrete.html", role=session.get("role"))
 
 
-# DIGITAL ELECTRONICS PAGE
 @app.route("/digital")
 def digital():
-    return render_template("digital.html", role=session.get("role"))
 
+    if "user_id" not in session:
+        return redirect("/login")   # redirect to login page
+
+    return render_template("digital.html", role=session.get("role"))
 
 # DATA STRUCTURES PAGE
 @app.route("/ds")
@@ -166,6 +169,7 @@ def login():
         user = cursor.fetchone()
 
         if user:
+            session["user_id"] = user["id"]     # important
             session["user"] = user["name"]
             session["role"] = user["role"]
             return redirect("/")
@@ -183,15 +187,17 @@ def register():
         email = request.form["email"]
         password = request.form["password"]
         password_confirm = request.form["password_confirm"]
+        role = request.form["role"]
 
         if password != password_confirm:
             return "Passwords do not match", 400
 
         cursor = db.cursor()
 
+
         cursor.execute(
-            "INSERT INTO users(name,email,password,role) VALUES(%s,%s,%s,%s)",
-            (username,email,password,"student")
+        "INSERT INTO users(name,email,password,role) VALUES(%s,%s,%s,%s)",
+            (username,email,password,role)
         )
 
         db.commit()
@@ -211,23 +217,29 @@ def logout():
 
 
 # UPDATE NOTES
-@app.route("/update/<subject>", methods=["GET", "POST"])
+@app.route("/update/<subject>", methods=["GET","POST"])
 def update(subject):
-    if session.get("username") != "admin":
+
+    if session.get("role") != "admin":
         return "Access denied", 403
 
-    topic = request.args.get("topic", "")
+    topic = request.args.get("topic","")
 
     if request.method == "POST":
-        file = request.files.get("file")
+
+        file = request.files["file"]
+
         if file:
-            # Save the file, perhaps in a folder structure
-            import os
-            upload_dir = os.path.join("uploads", subject, topic.replace(" ", "_"))
+
+            upload_dir = os.path.join("static","uploads",subject)
+
             os.makedirs(upload_dir, exist_ok=True)
-            file_path = os.path.join(upload_dir, file.filename)
-            file.save(file_path)
-            return "File uploaded successfully"
+
+            filepath = os.path.join(upload_dir, file.filename)
+
+            file.save(filepath)
+
+            return redirect("/" + subject)
 
     return render_template("update.html", subject=subject, topic=topic)
 

@@ -1,27 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="auth-container">
-    <div class="auth-box">
-        <div class="auth-header">
-            <div class="icon">📘</div>
-            <h2>Register</h2>
-            <p>Join our community and start sharing knowledge</p>
-        </div>
+<div class="auth-box">
 
-        <form method="POST" action="/register" class="auth-form">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="password" name="password" placeholder="Password (Min 8 characters)" required>
-            <input type="password" name="password_confirm"  id="password_confirm" placeholder="Confirm Password" required>
-            
+<h2>Register</h2>
 
-            <button type="submit" class="auth-btn">Create Account</button>
-        </form>
+<form method="POST">
 
-        <div class="auth-footer">
-            <p>Already have an account? <a href="/login">Log in here</a></p>
-        </div>
-    </div>
+<input type="text" name="username" placeholder="Username" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<input type="password" name="password_confirm" placeholder="Confirm Password" required>
+
+<select name="role" required>
+<option value="">Select Role</option>
+<option value="student">Student</option>
+<option value="teacher">Teacher</option>
+<option value="admin">Admin</option>
+</select>
+
+<button type="submit">Register</button>
+
+</form>
+
+<p>Already have account? <a href="/login">Login</a></p>
+
 </div>
+</div>
+
 {% endblock %}
