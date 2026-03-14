@@ -1,39 +1,50 @@
 from flask import Flask, render_template, request, redirect, session
-import pymysql
+import psycopg2
 import os
 
 app = Flask(__name__)
-app.secret_key = "secret123"
+app.secret_key = os.environ.get("SECRET_KEY","secret123")
 
-# MySQL Connection
-db = pymysql.connect(
-    host="localhost",
-    user="root",
-    password="root123",
-    database="study_material_db",
-    cursorclass=pymysql.cursors.DictCursor
-)
+# PostgreSQL connection (Neon)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+def get_db():
+    conn = psycopg2.connect(DATABASE_URL)
+    return conn
 
 # Insert admin user if not exists
-cursor = db.cursor()
-cursor.execute("INSERT IGNORE INTO users(name,email,password,role) VALUES('Admin','admin@gmail.com','admin123','admin')")
-db.commit()
+conn = get_db()
+cursor = conn.cursor()
+
+cursor.execute("""
+INSERT INTO users(name,email,password,role)
+VALUES('Admin','admin@gmail.com','admin123','admin')
+ON CONFLICT (email) DO NOTHING
+""")
+
+conn.commit()
+cursor.close()
+conn.close()
+
 
 # HOME PAGE
 @app.route("/")
 def index():
 
-    cursor = db.cursor()
+    conn = get_db()
+    cursor = conn.cursor()
 
-    cursor.execute("SELECT COUNT(*) AS total_notes FROM notes")
-    notes = cursor.fetchone()["total_notes"]
+    cursor.execute("SELECT COUNT(*) FROM notes")
+    notes = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) AS total_users FROM users")
-    users = cursor.fetchone()["total_users"]
+    cursor.execute("SELECT COUNT(*) FROM users")
+    users = cursor.fetchone()[0]
 
-    cursor.execute("SELECT SUM(downloads) AS total_downloads FROM notes")
-    result = cursor.fetchone()
-    downloads = result["total_downloads"] if result["total_downloads"] else 0
+    cursor.execute("SELECT COALESCE(SUM(downloads),0) FROM notes")
+    downloads = cursor.fetchone()[0]
+
+    cursor.close()
+    conn.close()
 
     return render_template(
         "index.html",
@@ -47,23 +58,24 @@ def index():
 @app.route("/category")
 def category():
 
-    cursor = db.cursor()
+    conn = get_db()
+    cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM departments")
-
     departments = cursor.fetchall()
 
-    return render_template(
-        "category.html",
-        departments=departments
-    )
+    cursor.close()
+    conn.close()
+
+    return render_template("category.html", departments=departments)
 
 
 # SUBJECT PAGE
 @app.route("/subject/<int:dept_id>")
 def subject(dept_id):
 
-    cursor = db.cursor()
+    conn = get_db()
+    cursor = conn.cursor()
 
     cursor.execute(
         "SELECT * FROM subjects WHERE department_id=%s",
@@ -72,82 +84,20 @@ def subject(dept_id):
 
     subjects = cursor.fetchall()
 
-    return render_template(
-        "subject.html",
-        subjects=subjects
-    )
+    cursor.close()
+    conn.close()
+
+    return render_template("subject.html", subjects=subjects)
 
 
-# DISCRETE MATHEMATICS PAGE
-@app.route("/discrete")
-def discrete():
-    return render_template("discrete.html", role=session.get("role"))
-
-
+# DIGITAL PAGE
 @app.route("/digital")
 def digital():
 
     if "user_id" not in session:
-        return redirect("/login")   # redirect to login page
+        return redirect("/login")
 
     return render_template("digital.html", role=session.get("role"))
-
-# DATA STRUCTURES PAGE
-@app.route("/ds")
-def ds():
-    return render_template("ds.html", role=session.get("role"))
-
-
-# OPERATING SYSTEMS PAGE
-@app.route("/os")
-def os_page():
-    return render_template("os.html", role=session.get("role"))
-
-
-# TABLE OF CONTENTS PAGE
-@app.route("/toc")
-def toc():
-    return render_template("toc.html", role=session.get("role"))
-
-
-# OOPS PAGE
-@app.route("/oops")
-def oops():
-    return render_template("oops.html", role=session.get("role"))
-
-
-# NOTES PAGE
-@app.route("/notes/<subject>/<note_type>")
-def notes(subject, note_type):
-    topic = request.args.get("topic", "")
-    
-    # For now, since no notes in DB, always show no notes
-    return render_template("notes.html", subject=subject, note_type=note_type, topic=topic, notes=[])
-
-
-# SEARCH PAGE
-@app.route("/search", methods=["POST"])
-def search():
-    query = request.form.get("query", "").strip().lower()
-    if not query:
-        return redirect("/")
-
-    # Simple keyword-based redirects
-    if "discrete" in query or "mathematics" in query:
-        return redirect("/discrete")
-    elif "digital" in query or "electronics" in query:
-        return redirect("/digital")
-    elif "oops" in query or "object oriented" in query or "java" in query:
-        return redirect("/oops")
-    elif "data structures" in query or "ds" in query:
-        return redirect("/ds")
-    elif "operating system" in query or "os" in query:
-        return redirect("/os")
-    elif "theory of computation" in query or "toc" in query or "automata" in query:
-        return redirect("/toc")
-    else:
-        # If no match, show no results page
-        return render_template("search.html", results=[], query=query)
 
 
 # LOGIN
@@ -159,19 +109,24 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
 
-        cursor = db.cursor()
+        conn = get_db()
+        cursor = conn.cursor()
 
         cursor.execute(
-            "SELECT * FROM users WHERE email=%s AND password=%s",
+            "SELECT id,name,role FROM users WHERE email=%s AND password=%s",
             (email,password)
         )
 
         user = cursor.fetchone()
 
+        cursor.close()
+        conn.close()
+
         if user:
-            session["user_id"] = user["id"]     # important
-            session["user"] = user["name"]
-            session["role"] = user["role"]
+            session["user_id"] = user[0]
+            session["user"] = user[1]
+            session["role"] = user[2]
+
             return redirect("/")
 
     return render_template("login.html")
@@ -192,15 +147,17 @@ def register():
         if password != password_confirm:
             return "Passwords do not match", 400
 
-        cursor = db.cursor()
-
+        conn = get_db()
+        cursor = conn.cursor()
 
         cursor.execute(
-        "INSERT INTO users(name,email,password,role) VALUES(%s,%s,%s,%s)",
+            "INSERT INTO users(name,email,password,role) VALUES(%s,%s,%s,%s)",
             (username,email,password,role)
         )
 
-        db.commit()
+        conn.commit()
+        cursor.close()
+        conn.close()
 
         return redirect("/login")
 
@@ -210,9 +167,7 @@ def register():
 # LOGOUT
 @app.route("/logout")
 def logout():
-
     session.clear()
-
     return redirect("/")
 
 
@@ -232,11 +187,9 @@ def update(subject):
         if file:
 
             upload_dir = os.path.join("static","uploads",subject)
-
             os.makedirs(upload_dir, exist_ok=True)
 
             filepath = os.path.join(upload_dir, file.filename)
-
             file.save(filepath)
 
             return redirect("/" + subject)
@@ -244,5 +197,5 @@ def update(subject):
     return render_template("update.html", subject=subject, topic=topic)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# Vercel entry
+app = app
