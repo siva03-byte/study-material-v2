@@ -123,8 +123,8 @@ INSERT INTO topics (topic_name, subject_id) VALUES
 ('OSI Model',4);
 
 -- Users
-INSERT INTO users (name,email,password,role) VALUES
-('Admin Teacher','teacher1@mail.com','123456','teacher'),
+INSERT INTO users (name,email,password) VALUES
+('Admin Teacher','teacher1@mail.com','123456'),
 
 -- Notes
 INSERT INTO notes (title,file_path,note_type,subject_id,topic_id,uploaded_by) VALUES

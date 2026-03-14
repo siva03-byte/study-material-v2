@@ -213,7 +213,7 @@ def logout():
 # UPDATE NOTES
 @app.route("/update/<subject>", methods=["GET", "POST"])
 def update(subject):
-    if session.get("role") != "admin":
+    if session.get("username") != "admin":
         return "Access denied", 403
 
     topic = request.args.get("topic", "")

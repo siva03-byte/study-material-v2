@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title">Object Oriented Programming Topics</h1>
+
+<ul class="topics">
+
+<li>
+  <span>OOP Concepts and Programming Paradigm</span>
+  <button onclick="viewPDF('topic1')">View PDF</button>
+  <button onclick="viewVideo('topic1')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic1" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic1')">Upload PDF</button>
+  <input type="url" id="video-topic1" placeholder="Video Link">
+  <button onclick="uploadVideo('topic1')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Java Programming Basics</span>
+  <button onclick="viewPDF('topic2')">View PDF</button>
+  <button onclick="viewVideo('topic2')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic2" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic2')">Upload PDF</button>
+  <input type="url" id="video-topic2" placeholder="Video Link">
+  <button onclick="uploadVideo('topic2')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Classes Objects and Methods</span>
+  <button onclick="viewPDF('topic3')">View PDF</button>
+  <button onclick="viewVideo('topic3')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic3" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic3')">Upload PDF</button>
+  <input type="url" id="video-topic3" placeholder="Video Link">
+  <button onclick="uploadVideo('topic3')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Inheritance and Method Overriding</span>
+  <button onclick="viewPDF('topic4')">View PDF</button>
+  <button onclick="viewVideo('topic4')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic4" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic4')">Upload PDF</button>
+  <input type="url" id="video-topic4" placeholder="Video Link">
+  <button onclick="uploadVideo('topic4')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Interfaces and Abstract Classes</span>
+  <button onclick="viewPDF('topic5')">View PDF</button>
+  <button onclick="viewVideo('topic5')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic5" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic5')">Upload PDF</button>
+  <input type="url" id="video-topic5" placeholder="Video Link">
+  <button onclick="uploadVideo('topic5')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Exception Handling</span>
+  <button onclick="viewPDF('topic6')">View PDF</button>
+  <button onclick="viewVideo('topic6')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic6" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic6')">Upload PDF</button>
+  <input type="url" id="video-topic6" placeholder="Video Link">
+  <button onclick="uploadVideo('topic6')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Multithreading</span>
+  <button onclick="viewPDF('topic7')">View PDF</button>
+  <button onclick="viewVideo('topic7')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic7" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic7')">Upload PDF</button>
+  <input type="url" id="video-topic7" placeholder="Video Link">
+  <button onclick="uploadVideo('topic7')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Java Collections Framework</span>
+  <button onclick="viewPDF('topic8')">View PDF</button>
+  <button onclick="viewVideo('topic8')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic8" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic8')">Upload PDF</button>
+  <input type="url" id="video-topic8" placeholder="Video Link">
+  <button onclick="uploadVideo('topic8')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>File Handling</span>
+  <button onclick="viewPDF('topic9')">View PDF</button>
+  <button onclick="viewVideo('topic9')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic9" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic9')">Upload PDF</button>
+  <input type="url" id="video-topic9" placeholder="Video Link">
+  <button onclick="uploadVideo('topic9')">Upload Video</button>
+  {% endif %}
+</li>
+<li>
+  <span>Event Handling and GUI</span>
+  <button onclick="viewPDF('topic10')">View PDF</button>
+  <button onclick="viewVideo('topic10')">View Video</button>
+  {% if session.get('user') %}
+  <input type="url" id="pdf-topic10" placeholder="PDF Link">
+  <button onclick="uploadPDF('topic10')">Upload PDF</button>
+  <input type="url" id="video-topic10" placeholder="Video Link">
+  <button onclick="uploadVideo('topic10')">Upload Video</button>
+  {% endif %}
+</li>
+
+</ul>
+
+<div class="back">
+<a href="/categories">Back to Subjects</a>
+</div>
+
+<script>
+function uploadPDF(topic) {
+  const link = document.getElementById('pdf-' + topic).value;
+  if (link) {
+    localStorage.setItem('oops-pdf-' + topic, link);
+    alert('PDF link uploaded for ' + topic);
+  } else {
+    alert('Please enter a PDF link');
+  }
+}
+
+function uploadVideo(topic) {
+  const link = document.getElementById('video-' + topic).value;
+  if (link) {
+    localStorage.setItem('oops-video-' + topic, link);
+    alert('Video link uploaded for ' + topic);
+  } else {
+    alert('Please enter a Video link');
+  }
+}
+
+function viewPDF(topic) {
+  const link = localStorage.getItem('oops-pdf-' + topic);
+  if (link) {
+    window.open(link, '_blank');
+  } else {
+    alert('No PDF link uploaded for this topic');
+  }
+}
+
+function viewVideo(topic) {
+  const link = localStorage.getItem('oops-video-' + topic);
+  if (link) {
+    window.open(link, '_blank');
+  } else {
+    alert('No Video link uploaded for this topic');
+  }
+}
+
+// Load saved links on page load
+window.onload = function() {
+  for (let i = 1; i <= 10; i++) {
+    const pdfLink = localStorage.getItem('oops-pdf-topic' + i);
+    const videoLink = localStorage.getItem('oops-video-topic' + i);
+    if (pdfLink) document.getElementById('pdf-topic' + i).value = pdfLink;
+    if (videoLink) document.getElementById('video-topic' + i).value = videoLink;
+  }
+}
+</script>
+{% endblock %}
