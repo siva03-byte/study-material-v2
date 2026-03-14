@@ -1,20 +1,21 @@
--- ===============================================================================
--- DATABASE CREATION
+-- ======================================
+-- ROLE ENUM TYPE
 -- ======================================
 
-CREATE DATABASE study_material_db;
-USE study_material_db;
+CREATE TYPE user_role AS ENUM ('student','teacher','admin');
+
+CREATE TYPE note_type_enum AS ENUM ('online','written','video');
 
 -- ======================================
 -- USERS TABLE
 -- ======================================
 
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('student','teacher','admin') NOT NULL,
+    role user_role NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -23,7 +24,7 @@ CREATE TABLE users (
 -- ======================================
 
 CREATE TABLE departments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     department_name VARCHAR(100) NOT NULL
 );
 
@@ -32,11 +33,9 @@ CREATE TABLE departments (
 -- ======================================
 
 CREATE TABLE subjects (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     subject_name VARCHAR(150) NOT NULL,
-    department_id INT,
-    FOREIGN KEY (department_id) REFERENCES departments(id)
-        ON DELETE CASCADE
+    department_id INTEGER REFERENCES departments(id) ON DELETE CASCADE
 );
 
 -- ======================================
@@ -44,40 +43,26 @@ CREATE TABLE subjects (
 -- ======================================
 
 CREATE TABLE topics (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     topic_name VARCHAR(200) NOT NULL,
-    subject_id INT,
-    FOREIGN KEY (subject_id) REFERENCES subjects(id)
-        ON DELETE CASCADE
+    subject_id INTEGER REFERENCES subjects(id) ON DELETE CASCADE
 );
 
 -- ======================================
 -- NOTES TABLE
 -- ======================================
--- ======================================
--- NOTES TABLE
--- ======================================
 
 CREATE TABLE notes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
     file_path VARCHAR(255),
     video_link VARCHAR(255),
-    note_type ENUM('online','written','video') NOT NULL,
-    subject_id INT,
-    topic_id INT,
-    uploaded_by INT,
-    downloads INT DEFAULT 0,
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (subject_id) REFERENCES subjects(id)
-        ON DELETE CASCADE,
-
-    FOREIGN KEY (topic_id) REFERENCES topics(id)
-        ON DELETE CASCADE,
-
-    FOREIGN KEY (uploaded_by) REFERENCES users(id)
-        ON DELETE CASCADE
+    note_type note_type_enum NOT NULL,
+    subject_id INTEGER REFERENCES subjects(id) ON DELETE CASCADE,
+    topic_id INTEGER REFERENCES topics(id) ON DELETE CASCADE,
+    uploaded_by INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    downloads INTEGER DEFAULT 0,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ======================================
@@ -85,17 +70,14 @@ CREATE TABLE notes (
 -- ======================================
 
 CREATE TABLE downloads (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    note_id INT,
-    downloaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (note_id) REFERENCES notes(id)
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    note_id INTEGER REFERENCES notes(id),
+    downloaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ======================================
--- SAMPLE DATA INSERTION
+-- SAMPLE DATA
 -- ======================================
 
 -- Departments
@@ -122,10 +104,12 @@ INSERT INTO topics (topic_name, subject_id) VALUES
 ('Normalization',3),
 ('OSI Model',4);
 
+-- Users
 INSERT INTO users (name,email,password,role) VALUES
 ('Admin Teacher','teacher1@mail.com','123456','teacher'),
 ('System Admin','admin@mail.com','admin123','admin'),
 ('Student User','student@mail.com','123456','student');
+
 -- Notes
 INSERT INTO notes (title,file_path,video_link,note_type,subject_id,topic_id,uploaded_by) VALUES
 ('Linked List Notes','uploads/linkedlist.pdf',NULL,'written',1,1,1),
