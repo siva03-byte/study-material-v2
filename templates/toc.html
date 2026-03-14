@@ -1,22 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% macro topic_item(summary, topic_name) %}
+<li class="topic-item">
+  <div class="topic-content">
+    <details class="topic">
+      <summary>{{ summary }}</summary>
+      <div class="topic-options">
+        <a href="/notes/toc/online_notes?topic={{ topic_name }}">Online Notes</a>
+        <a href="/notes/toc/written_notes?topic={{ topic_name }}">Written Notes</a>
+        <a href="/notes/toc/video_notes?topic={{ topic_name }}">Online Video</a>
+        {% if role == "admin" %}
+        <a href="/update/toc?topic={{ topic_name }}" class="upload-btn">Upload Files</a>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+</li>
+{% endmacro %}
+
 <h1 class="title">Theory of Computation Topics</h1>
+
+<p>Role: {{ role }}</p>
 
 <ul class="topics">
 
-<li><a href="#">Finite Automata Concepts</a></li>
-<li><a href="#">Deterministic Finite Automata</a></li>
-<li><a href="#">Non Deterministic Finite Automata</a></li>
-<li><a href="#">Regular Expressions</a></li>
-<li><a href="#">Conversion of NFA to DFA</a></li>
-<li><a href="#">Context Free Grammar</a></li>
-<li><a href="#">Pushdown Automata</a></li>
-<li><a href="#">Pumping Lemma</a></li>
-<li><a href="#">Turing Machines</a></li>
-<li><a href="#">Complexity Theory</a></li>
+{{ topic_item('Finite Automata Concepts', 'Finite Automata Concepts') }}
+{{ topic_item('Deterministic Finite Automata', 'Deterministic Finite Automata') }}
+{{ topic_item('Non Deterministic Finite Automata', 'Non Deterministic Finite Automata') }}
+{{ topic_item('Regular Expressions', 'Regular Expressions') }}
+{{ topic_item('Conversion of NFA to DFA', 'Conversion of NFA to DFA') }}
+{{ topic_item('Context Free Grammar', 'Context Free Grammar') }}
+{{ topic_item('Pushdown Automata', 'Pushdown Automata') }}
+{{ topic_item('Pumping Lemma', 'Pumping Lemma') }}
+{{ topic_item('Turing Machines', 'Turing Machines') }}
+{{ topic_item('Complexity Theory', 'Complexity Theory') }}
 
 </ul>
+
+
 <div class="back">
-<a href="index.html">Back to Subjects</a>
+<a href="/category">Back to Subjects</a>
 </div>
 {% endblock %}

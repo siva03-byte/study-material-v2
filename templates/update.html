@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="title">Update Notes for {{ subject }} - {{ topic }}</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    <label for="file">Select file to upload:</label>
+    <input type="file" name="file" id="file" required>
+    <button type="submit">Upload</button>
+</form>
+
+<div class="back">
+    <a href="/{{ subject }}">Back to {{ subject }}</a>
+</div>
+
+{% endblock %}

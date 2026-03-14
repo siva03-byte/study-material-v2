@@ -1,123 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% macro topic_item(summary, topic_name) %}
+<li class="topic-item">
+  <div class="topic-content">
+    <details class="topic">
+      <summary>{{ summary }}</summary>
+      <div class="topic-options">
+        <a href="/notes/digital/online_notes?topic={{ topic_name }}">Online Notes</a>
+        <a href="/notes/digital/written_notes?topic={{ topic_name }}">Written Notes</a>
+        <a href="/notes/digital/video_notes?topic={{ topic_name }}">Online Video</a>
+        {% if role == "admin" %}
+        <a href="/update/digital?topic={{ topic_name }}" class="upload-btn">Upload Files</a>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+</li>
+{% endmacro %}
+
 <h1 class="title">Digital Electronics Topics</h1>
 
 <ul class="topics">
 
-<li>
-  <details class="topic">
-    <summary>Binary Number Systems and Binary Arithmetic</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Binary Number Systems and Binary Arithmetic">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Binary Number Systems and Binary Arithmetic">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Binary Number Systems and Binary Arithmetic">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Boolean Algebra Laws and Theorems</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Boolean Algebra Laws and Theorems">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Boolean Algebra Laws and Theorems">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Boolean Algebra Laws and Theorems">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Logic Gates and Truth Tables</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Logic Gates and Truth Tables">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Logic Gates and Truth Tables">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Logic Gates and Truth Tables">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Karnaugh Map Simplification Techniques</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Karnaugh Map Simplification Techniques">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Karnaugh Map Simplification Techniques">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Karnaugh Map Simplification Techniques">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Half Adder and Full Adder Circuits</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Half Adder and Full Adder Circuits">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Half Adder and Full Adder Circuits">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Half Adder and Full Adder Circuits">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Multiplexers and Demultiplexers</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Multiplexers and Demultiplexers">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Multiplexers and Demultiplexers">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Multiplexers and Demultiplexers">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Flip Flops and Sequential Circuits</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Flip Flops and Sequential Circuits">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Flip Flops and Sequential Circuits">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Flip Flops and Sequential Circuits">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Counters and Shift Registers</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Counters and Shift Registers">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Counters and Shift Registers">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Counters and Shift Registers">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Memory Devices</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Memory Devices">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Memory Devices">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Memory Devices">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Input Output Interfaces</summary>
-    <div class="topic-options">
-      <a href="/notes/digital/online_notes?topic=Input Output Interfaces">Online Notes</a>
-      <a href="/notes/digital/written_notes?topic=Input Output Interfaces">Written Notes</a>
-      <a href="/notes/digital/video_notes?topic=Input Output Interfaces">Online Video</a>
-    </div>
-  </details>
-</li>
+{{ topic_item('Binary Number Systems and Binary Arithmetic', 'Binary Number Systems and Binary Arithmetic') }}
+{{ topic_item('Boolean Algebra Laws and Theorems', 'Boolean Algebra Laws and Theorems') }}
+{{ topic_item('Logic Gates and Truth Tables', 'Logic Gates and Truth Tables') }}
+{{ topic_item('Karnaugh Map Simplification Techniques', 'Karnaugh Map Simplification Techniques') }}
+{{ topic_item('Half Adder and Full Adder Circuits', 'Half Adder and Full Adder Circuits') }}
+{{ topic_item('Multiplexers and Demultiplexers', 'Multiplexers and Demultiplexers') }}
+{{ topic_item('Flip Flops and Sequential Circuits', 'Flip Flops and Sequential Circuits') }}
+{{ topic_item('Counters and Shift Registers', 'Counters and Shift Registers') }}
+{{ topic_item('Memory Devices', 'Memory Devices') }}
+{{ topic_item('Input Output Interfaces', 'Input Output Interfaces') }}
 
 </ul>
 
-{% if role == "admin" %}
-<div class="upload-section">
-    <h3>Upload Files for Digital Electronics</h3>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Upload</button>
-    </form>
-</div>
-{% endif %}
-
 <div class="back">
-<a href="index.html">Back to Subject</a>
+<a href="/category">Back to Subjects</a>
 </div>
 {% endblock %}

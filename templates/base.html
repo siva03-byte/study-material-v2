@@ -13,8 +13,13 @@
 <nav>
 <a href="/">Home</a>
 <a href="/category">Browse</a>
+{% if session.user %}
+<a href="#">{{ session.user }}</a>
+<a href="/logout">Logout</a>
+{% else %}
 <a href="/login">Login</a>
 <a href="/register">Register</a>
+{% endif %}
 </nav>
 
 </header>

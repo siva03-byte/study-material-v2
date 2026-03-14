@@ -1,23 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% macro topic_item(summary, topic_name) %}
+<li class="topic-item">
+  <div class="topic-content">
+    <details class="topic">
+      <summary>{{ summary }}</summary>
+      <div class="topic-options">
+        <a href="/notes/oops/online_notes?topic={{ topic_name }}">Online Notes</a>
+        <a href="/notes/oops/written_notes?topic={{ topic_name }}">Written Notes</a>
+        <a href="/notes/oops/video_notes?topic={{ topic_name }}">Online Video</a>
+        {% if role == "admin" %}
+        <a href="/update/oops?topic={{ topic_name }}" class="upload-btn">Upload Files</a>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+</li>
+{% endmacro %}
+
 <h1 class="title">Object Oriented Programming Topics</h1>
 
 <ul class="topics">
 
-<li><a href="#">OOP Concepts and Programming Paradigm</a></li>
-<li><a href="#">Java Programming Basics</a></li>
-<li><a href="#">Classes Objects and Methods</a></li>
-<li><a href="#">Inheritance and Method Overriding</a></li>
-<li><a href="#">Interfaces and Abstract Classes</a></li>
-<li><a href="#">Exception Handling</a></li>
-<li><a href="#">Multithreading</a></li>
-<li><a href="#">Java Collections Framework</a></li>
-<li><a href="#">File Handling</a></li>
-<li><a href="#">Event Handling and GUI</a></li>
+{{ topic_item('OOP Concepts and Programming Paradigm', 'OOP Concepts and Programming Paradigm') }}
+{{ topic_item('Java Programming Basics', 'Java Programming Basics') }}
+{{ topic_item('Classes Objects and Methods', 'Classes Objects and Methods') }}
+{{ topic_item('Inheritance and Method Overriding', 'Inheritance and Method Overriding') }}
+{{ topic_item('Interfaces and Abstract Classes', 'Interfaces and Abstract Classes') }}
+{{ topic_item('Exception Handling', 'Exception Handling') }}
+{{ topic_item('Multithreading', 'Multithreading') }}
+{{ topic_item('Java Collections Framework', 'Java Collections Framework') }}
+{{ topic_item('File Handling', 'File Handling') }}
+{{ topic_item('Event Handling and GUI', 'Event Handling and GUI') }}
 
 </ul>
 
+
 <div class="back">
-<a href="index.html">Back to Subjects</a>
+<a href="/category">Back to Subjects</a>
 </div>
 {% endblock %}

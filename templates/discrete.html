@@ -1,124 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% macro topic_item(summary, topic_name) %}
+<li class="topic-item">
+  <div class="topic-content">
+    <details class="topic">
+      <summary>{{ summary }}</summary>
+      <div class="topic-options">
+        <a href="/notes/discrete/online_notes?topic={{ topic_name }}">Online Notes</a>
+        <a href="/notes/discrete/written_notes?topic={{ topic_name }}">Written Notes</a>
+        <a href="/notes/discrete/video_notes?topic={{ topic_name }}">Online Video</a>
+        {% if role == "admin" %}
+        <a href="/update/discrete?topic={{ topic_name }}" class="upload-btn">Upload Files</a>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+</li>
+{% endmacro %}
+
 <h1 class="title">Discrete Mathematics Topics</h1>
 
 <ul class="topics">
 
-<li>
-  <details class="topic">
-    <summary>Mathematical Induction and Proof Techniques</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Mathematical Induction and Proof Techniques">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Mathematical Induction and Proof Techniques">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Mathematical Induction and Proof Techniques">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Counting Principles and Combinatorics</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Counting Principles and Combinatorics">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Counting Principles and Combinatorics">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Counting Principles and Combinatorics">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Pigeonhole Principle Applications</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Pigeonhole Principle Applications">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Pigeonhole Principle Applications">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Pigeonhole Principle Applications">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Permutations and Combinations</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Permutations and Combinations">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Permutations and Combinations">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Permutations and Combinations">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Recurrence Relations</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Recurrence Relations">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Recurrence Relations">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Recurrence Relations">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Graph Theory and Graph Representation</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Graph Theory and Graph Representation">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Graph Theory and Graph Representation">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Graph Theory and Graph Representation">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Propositional Logic</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Propositional Logic">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Propositional Logic">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Propositional Logic">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Predicates and Quantifiers</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Predicates and Quantifiers">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Predicates and Quantifiers">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Predicates and Quantifiers">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Algebraic Structures</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Algebraic Structures">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Algebraic Structures">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Algebraic Structures">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Lattices and Boolean Algebra</summary>
-    <div class="topic-options">
-      <a href="/notes/discrete/online_notes?topic=Lattices and Boolean Algebra">Online Notes</a>
-      <a href="/notes/discrete/written_notes?topic=Lattices and Boolean Algebra">Written Notes</a>
-      <a href="/notes/discrete/video_notes?topic=Lattices and Boolean Algebra">Online Video</a>
-    </div>
-  </details>
-</li>
+{{ topic_item('Mathematical Induction and Proof Techniques', 'Mathematical Induction and Proof Techniques') }}
+{{ topic_item('Counting Principles and Combinatorics', 'Counting Principles and Combinatorics') }}
+{{ topic_item('Pigeonhole Principle Applications', 'Pigeonhole Principle Applications') }}
+{{ topic_item('Permutations and Combinations', 'Permutations and Combinations') }}
+{{ topic_item('Recurrence Relations', 'Recurrence Relations') }}
+{{ topic_item('Graph Theory and Graph Representation', 'Graph Theory and Graph Representation') }}
+{{ topic_item('Propositional Logic', 'Propositional Logic') }}
+{{ topic_item('Predicates and Quantifiers', 'Predicates and Quantifiers') }}
+{{ topic_item('Algebraic Structures', 'Algebraic Structures') }}
+{{ topic_item('Lattices and Boolean Algebra', 'Lattices and Boolean Algebra') }}
 
 </ul>
 
-{% if role == "admin" %}
-<div class="upload-section">
-    <h3>Upload Files for Discrete Mathematics</h3>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Upload</button>
-    </form>
-</div>
-{% endif %}
-
 <div class="back">
-<a href="index.html">Back to Subject</a>
+<a href="/category">Back to Subjects</a>
 </div>
 {% endblock %}

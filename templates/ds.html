@@ -1,123 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
+
+{% macro topic_item(summary, topic_name) %}
+<li class="topic-item">
+  <div class="topic-content">
+    <details class="topic">
+      <summary>{{ summary }}</summary>
+      <div class="topic-options">
+        <a href="/notes/ds/online_notes?topic={{ topic_name }}">Online Notes</a>
+        <a href="/notes/ds/written_notes?topic={{ topic_name }}">Written Notes</a>
+        <a href="/notes/ds/video_notes?topic={{ topic_name }}">Online Video</a>
+        {% if role == "admin" %}
+        <a href="/update/ds?topic={{ topic_name }}" class="upload-btn">Upload Files</a>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+</li>
+{% endmacro %}
+
 <h1 class="title">Data Structures Topics</h1>
 
 <ul class="topics">
 
-<li>
-  <details class="topic">
-    <summary>Introduction to Data Structures</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Introduction to Data Structures">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Introduction to Data Structures">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Introduction to Data Structures">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Arrays and Operations</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Arrays and Operations">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Arrays and Operations">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Arrays and Operations">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Linked List Implementation</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Linked List Implementation">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Linked List Implementation">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Linked List Implementation">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Stack and Applications</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Stack and Applications">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Stack and Applications">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Stack and Applications">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Queue and Circular Queue</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Queue and Circular Queue">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Queue and Circular Queue">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Queue and Circular Queue">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Trees and Binary Trees</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Trees and Binary Trees">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Trees and Binary Trees">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Trees and Binary Trees">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Binary Search Trees</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Binary Search Trees">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Binary Search Trees">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Binary Search Trees">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Graph Representation</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Graph Representation">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Graph Representation">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Graph Representation">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Sorting Algorithms</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Sorting Algorithms">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Sorting Algorithms">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Sorting Algorithms">Online Video</a>
-    </div>
-  </details>
-</li>
-<li>
-  <details class="topic">
-    <summary>Hashing Techniques</summary>
-    <div class="topic-options">
-      <a href="/notes/ds/online_notes?topic=Hashing Techniques">Online Notes</a>
-      <a href="/notes/ds/written_notes?topic=Hashing Techniques">Written Notes</a>
-      <a href="/notes/ds/video_notes?topic=Hashing Techniques">Online Video</a>
-    </div>
-  </details>
-</li>
+{{ topic_item('Introduction to Data Structures', 'Introduction to Data Structures') }}
+{{ topic_item('Arrays and Operations', 'Arrays and Operations') }}
+{{ topic_item('Linked List Implementation', 'Linked List Implementation') }}
+{{ topic_item('Stack and Applications', 'Stack and Applications') }}
+{{ topic_item('Queue and Circular Queue', 'Queue and Circular Queue') }}
+{{ topic_item('Trees and Binary Trees', 'Trees and Binary Trees') }}
+{{ topic_item('Binary Search Trees', 'Binary Search Trees') }}
+{{ topic_item('Graph Representation', 'Graph Representation') }}
+{{ topic_item('Sorting Algorithms', 'Sorting Algorithms') }}
+{{ topic_item('Hashing Techniques', 'Hashing Techniques') }}
 
 </ul>
 
-{% if role == "admin" %}
-<div class="upload-section">
-    <h3>Upload Files for Data Structures</h3>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Upload</button>
-    </form>
-</div>
-{% endif %}
-
 <div class="back">
-<a href="index.html">Back to Subject</a>
+<a href="/category">Back to Subjects</a>
 </div>
 {% endblock %}

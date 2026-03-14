@@ -15,7 +15,7 @@ db = pymysql.connect(
 
 # Insert admin user if not exists
 cursor = db.cursor()
-cursor.execute("INSERT IGNORE INTO users(name,email,password,role) VALUES('Admin','admin@gmail.com','admin@123','admin')")
+cursor.execute("INSERT IGNORE INTO users(name,email,password,role) VALUES('Admin','admin@gmail.com','admin123','admin')")
 db.commit()
 
 # HOME PAGE
@@ -208,6 +208,28 @@ def logout():
     session.clear()
 
     return redirect("/")
+
+
+# UPDATE NOTES
+@app.route("/update/<subject>", methods=["GET", "POST"])
+def update(subject):
+    if session.get("role") != "admin":
+        return "Access denied", 403
+
+    topic = request.args.get("topic", "")
+
+    if request.method == "POST":
+        file = request.files.get("file")
+        if file:
+            # Save the file, perhaps in a folder structure
+            import os
+            upload_dir = os.path.join("uploads", subject, topic.replace(" ", "_"))
+            os.makedirs(upload_dir, exist_ok=True)
+            file_path = os.path.join(upload_dir, file.filename)
+            file.save(file_path)
+            return "File uploaded successfully"
+
+    return render_template("update.html", subject=subject, topic=topic)
 
 
 if __name__ == "__main__":

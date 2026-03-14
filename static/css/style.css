@@ -127,6 +127,10 @@ text-decoration:none;
 .btn-login{
 color:rgb(11, 10, 10);
 text-decoration:none;
+background: #fff;
+border: 2px solid #11998e;
+padding:12px 28px;
+border-radius:30px;
 }
 
 /* Book */
@@ -270,6 +274,24 @@ transform:translateY(-75vh) rotate(270deg);
 transform:translateY(-110vh) rotate(360deg);
 }
 }
+
+/* Make upload section float on the right for admin pages */
+.upload-section {
+    float: right;
+    width: 30%;
+    min-width: 250px;
+    margin: 20px 0 20px 20px;
+}
+
+/* Keep topics section from collapsing around floated elements */
+.topics {
+    width: 60%;
+    margin: 40px auto;
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+
 /* CATEGORY GRID */
 
 .container{
@@ -343,6 +365,14 @@ transition: background 0.2s;
 background: #ff7f5f;
 }
 
+.topic-options a.upload-btn {
+    background: #2c7aeb;
+}
+
+.topic-options a.upload-btn:hover {
+    background: #4b8ef7;
+}
+
 .upload-section {
     background: #f0f8ff;
     border: 1px solid #add8e6;
@@ -411,11 +441,37 @@ list-style:none;
 padding:0;
 }
 
-.topics li{
-background: white;
-padding:15px;
-margin:10px 0;
-border-radius:8px;
+.topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.topic-content {
+    flex-grow: 1;
+}
+
+.admin-actions {
+    margin-left: 20px;
+}
+
+.update-btn {
+    background: #ff6347;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.update-btn:hover {
+    background: #ff7f5f;
 }
 
 .back{
